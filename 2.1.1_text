@@ -1,0 +1,34 @@
+# enter the number of vertices:
+n = int(input())
+
+# the matrix that would store the input:
+a = []
+
+# enter an adjacency matrix: 
+for i in range(n):
+    a.append([int(i) for i in input().split()])
+
+# storing edge list:
+edge_list = []
+# storing adjacency list:
+adjacency_list = [[0]]
+
+
+for i in range(n):
+    adjacency_list.append([])
+    for j in range(n):
+        if a[i][j] == 1:
+            edge_list.append([i + 1, j + 1])
+            adjacency_list[i + 1].append(j + 1)
+
+# Represent as an edge list:
+print('Represent as an edge list:')
+print('in-vertex   out-vertex')
+for i in edge_list:
+    print(i[0], i[1], sep = '      |      ')
+
+# Represent as an adjacency list:
+print('Represent as an adjacency list:')
+for i in range(1, n + 1):
+    print('Adj({}): '.format(i), end = '')
+    print('{', *[adjacency_list[i][j] for j in range(0, n - 1)], '}')
